@@ -1,5 +1,8 @@
 
 import {TikkieCheckoutConfig} from './config';
+import { CreatedOrder } from './models/createdOrder';
+import { Order } from './models/order';
+import { CreateOrder } from './models/createOrder';
 
 export class TikkieCheckoutClient {
     config: TikkieCheckoutConfig;
@@ -17,7 +20,7 @@ export class TikkieCheckoutClient {
      * Manually authenticate with the Tikkie API.
      * TikkieCheckoutClient will automatically connect before making the first request.
      */
-    authenticate = async (): Promise<void> => {
+    async authenticate(): Promise<void> {
         try {
             await this.config.getAccessToken();
         } catch (err) {
@@ -25,6 +28,6 @@ export class TikkieCheckoutClient {
         }
     }
 
-    createOrder = (data: object) => this.config.postRequest('/v1/tikkie/fastcheckout/orders', data);
-    getOrder = (orderToken: string) => this.config.getRequest(`/v1/tikkie/fastcheckout/orders/${orderToken}`);
+    createOrder(data: CreateOrder) { return this.config.postRequest<CreatedOrder>('/v1/tikkie/fastcheckout/orders', data); }
+    getOrder(orderToken: string) { return this.config.getRequest<Order>(`/v1/tikkie/fastcheckout/orders/${orderToken}`); }
 }

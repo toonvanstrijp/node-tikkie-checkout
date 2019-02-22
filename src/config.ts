@@ -88,7 +88,7 @@ export class TikkieCheckoutConfig {
         return this.accessToken.token;
     }
 
-    async request(method: 'GET' | 'POST', endpoint: string, data: object | null = null): Promise<object> {
+    async request<T>(method: 'GET' | 'POST', endpoint: string, data: object | null = null): Promise<T> {
         try {
             let token: string;
             try {
@@ -125,6 +125,6 @@ export class TikkieCheckoutConfig {
         }
     }
 
-    getRequest(endpoint: string, query: object = {}): Promise<object> { return this.request('GET', endpoint, query); }
-    postRequest(endpoint: string, data: object = {}): Promise<object> { return this.request('POST', endpoint, data); }
+    getRequest<T>(endpoint: string, query: object = {}): Promise<T> { return this.request('GET', endpoint, query); }
+    postRequest<T>(endpoint: string, data: object = {}): Promise<T> { return this.request<T>('POST', endpoint, data); }
 }
