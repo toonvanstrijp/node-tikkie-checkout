@@ -45,11 +45,11 @@ export class TikkieCheckoutConfig {
     this.algorithm = algorithm;
   }
 
-  createHeaders(): Headers {
-    const headers: Headers = new Headers();
-    headers.append('User-Agent', 'node-tikkie-checkout/1.0');
-    headers.append('API-Key', this.apiKey);
-    headers.append('X-Merchant-Token', this.merchantToken);
+  createHeaders(): Record<string, string> {
+    const headers: Record<string, string> = {};
+    headers['User-Agent'] = 'node-tikkie-checkout/1.0';
+    headers['API-Key'] = this.apiKey;
+    headers['X-Merchant-Token'] = this.merchantToken;
     return headers;
   }
 
@@ -76,8 +76,8 @@ export class TikkieCheckoutConfig {
         body.append('grant_type', 'client_credentials');
         body.append('scope', 'tikkie');
 
-        const headers: Headers = this.createHeaders();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        const headers: Record<string, string> = this.createHeaders();
+        headers['Content-Type'] = 'application/x-www-form-urlencoded';
 
         const response: Response = await fetch(
           `${this.apiUrl}/v1/oauth/token`,
@@ -111,7 +111,7 @@ export class TikkieCheckoutConfig {
     } = { query: null, data: null },
   ): Promise<T> {
     try {
-      const headers: Headers = this.createHeaders();
+      const headers: Record<string, string> = this.createHeaders();
 
       // Authorization only needed for production
       if (!this.useSandbox) {
@@ -122,11 +122,11 @@ export class TikkieCheckoutConfig {
           throw err;
         }
 
-        headers.append('Authorization', `Bearer ${token}`);
+        headers.Authorization = `Bearer ${token}`;
       }
 
       if (method === 'POST' && options.data) {
-        headers.append('Content-Type', 'application/json');
+        headers['Content-Type'] = 'application/json';
       }
 
       let queryString = '';

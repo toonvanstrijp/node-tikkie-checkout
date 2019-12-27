@@ -1,7 +1,7 @@
 {
   "name": "tikkie-checkout",
   "description": "TypeScript implementation of the Tikkie Fast Checkout API.",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "license": "MIT",
   "author": "Toon van Strijp <toonvanstrijp@gmail.com> (https://www.toonvanstrijp.com)",
   "repository": "github:ToonvanStrijp/node-tikkie-checkout",
