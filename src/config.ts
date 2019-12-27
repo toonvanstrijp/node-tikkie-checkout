@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import { URLSearchParams, format } from 'url';
 import querystring from 'querystring';
-
+import fetch, { Response } from 'node-fetch';
 import jwt from 'jsonwebtoken';
 
 import { AccessToken } from './accessToken';
