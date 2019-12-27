@@ -1,7 +1,7 @@
 {
   "name": "tikkie-checkout",
   "description": "TypeScript implementation of the Tikkie Fast Checkout API.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "license": "MIT",
   "author": "Toon van Strijp <toonvanstrijp@gmail.com> (https://www.toonvanstrijp.com)",
   "repository": "github:ToonvanStrijp/node-tikkie-checkout",
@@ -32,14 +32,15 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "jsonwebtoken": "^8.1.0",
+    "jsonwebtoken": "^8.5.1",
     "typescript": "^3.3.3"
   },
   "devDependencies": {
-    "@types/node": "^11.9.4",
+    "@types/jsonwebtoken": "^8.3.5",
+    "@types/node": "^13.1.1",
+    "rimraf": "^3.0.0",
     "ts-node": "^8.0.2",
     "tsconfig-paths": "^3.8.0",
-    "tslint": "5.12.1",
-    "rimraf": "^2.6.3"
+    "tslint": "5.20.1"
   }
 }
