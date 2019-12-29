@@ -1,6 +1,6 @@
 import * as fs from 'fs';
-import { URLSearchParams, format } from 'url';
-import querystring from 'querystring';
+import { URLSearchParams } from 'url';
+import querystring from 'query-string';
 import fetch, { Response } from 'node-fetch';
 import jwt from 'jsonwebtoken';
 
