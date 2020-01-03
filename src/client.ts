@@ -3,6 +3,16 @@ import { CreatedOrder } from './models/createdOrder';
 import { Order } from './models/order';
 import { CreateOrder } from './models/createOrder';
 
+export interface TikkieCheckoutClientOptions {
+  apiKey: string;
+  merchantToken: string;
+  useSandbox?: boolean;
+}
+
+const defaultTikkieCheckoutClientOptions: Partial<TikkieCheckoutClientOptions> = {
+  useSandbox: false,
+};
+
 export class TikkieCheckoutClient {
   config: TikkieCheckoutConfig;
 
@@ -11,20 +21,12 @@ export class TikkieCheckoutClient {
    *
    * @param {TikkieCheckoutConfig} config Configuration object.
    */
-  constructor(config: TikkieCheckoutConfig) {
-    this.config = config;
-  }
-
-  /**
-   * Manually authenticate with the Tikkie API.
-   * TikkieCheckoutClient will automatically connect before making the first request.
-   */
-  async authenticate(): Promise<void> {
-    try {
-      await this.config.getAccessToken();
-    } catch (err) {
-      throw err;
-    }
+  constructor(config: TikkieCheckoutClientOptions) {
+    const { apiKey, merchantToken, useSandbox } = {
+      ...defaultTikkieCheckoutClientOptions,
+      ...config,
+    };
+    this.config = new TikkieCheckoutConfig(apiKey, merchantToken, useSandbox);
   }
 
   createOrder(data: CreateOrder) {
