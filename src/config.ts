@@ -16,7 +16,7 @@ export class TikkieCheckoutConfig {
   constructor(
     apiKey: string,
     merchantToken: string,
-    useSandbox: boolean = false,
+    useSandbox = false,
   ) {
     this.apiKey = apiKey;
     this.merchantToken = merchantToken;
