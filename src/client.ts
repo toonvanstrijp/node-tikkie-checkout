@@ -29,13 +29,14 @@ export class TikkieCheckoutClient {
     this.config = new TikkieCheckoutConfig(apiKey, merchantToken, useSandbox);
   }
 
-  createOrder(data: CreateOrder) {
+  createOrder(data: CreateOrder): Promise<CreatedOrder> {
     return this.config.postRequest<CreatedOrder>(
       '/v1/tikkie/fastcheckout/orders',
       data,
     );
   }
-  getOrder(orderToken: string) {
+
+  getOrder(orderToken: string): Promise<Order> {
     return this.config.getRequest<Order>(
       `/v1/tikkie/fastcheckout/orders/${orderToken}`,
     );
