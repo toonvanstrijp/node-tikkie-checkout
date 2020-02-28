@@ -11,12 +11,13 @@ npm install tikkie-checkout
 
 ## Usage
 ```typescript
-import {TikkieCheckoutClient, TikkieCheckoutConfig} from 'tikkie-checkout';
+import {TikkieCheckoutClient} from 'tikkie-checkout';
 
-const config = new TikkieCheckoutConfig('apiKey', 'merchantToken');
-config.loadPrivateKey('path_to_key', 'RS256');
-
-const tikkie = new TikkieCheckoutClient(config);
+const tikkie = new TikkieCheckoutClient({
+  apiKey: TIKKIE_KEY,
+  merchantToken: TIKKIE_MERCHANT_TOKEN,
+  useSandbox: true,
+});
 
 try {
   
